@@ -7,3 +7,4 @@ spec:
     - name: stress
       image: avinashaddepalli24/stress
       imagePullPolicy: Always
+      command: ["sleep","200"]
