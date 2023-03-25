@@ -1,7 +1,7 @@
 apiVersion: v1
-kind: Stress
+kind: Pod
 metadata:
-  name: nginx
+  name: stress
 spec:
   containers:
     - name: stress
