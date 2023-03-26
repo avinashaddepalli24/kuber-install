@@ -4,5 +4,4 @@ metadata:
  name: course-config
 data:
  course: docker
- duratoin: 25hr
- 
+ duration: 25hr
