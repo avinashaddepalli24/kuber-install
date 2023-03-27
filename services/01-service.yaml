@@ -22,7 +22,7 @@ metadata:
   name: nginx-service
 spec:
   selector:
-    name: nginx
+    server: nginx
   ports:
     - protocol: TCP
       port: 80
@@ -40,6 +40,7 @@ spec:
     - name: almalinux
       image: almalinux
       command: ["sleep","100000"]
+
 
 
 # #### after creation of 2 pods and 1 service 

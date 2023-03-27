@@ -1,0 +1,37 @@
+### 2 pods with nginx and almalinux and 1 Service creation (cluster IP SERVICE)
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+   server: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+      - containerPort: 80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    server: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+
+### this will crete 1 pod and 1 load balancer service @ 26 MIN
+# kubectl apply -f 03-service-load.yaml
+# kubectl get service 
+# WHEN WE CREATE load balancer service then  BY DEFAULT CLUSTER IP , NODE PORT AND LOADBALANCER  WILL CREATED 
+# GO TO AWS AND LOADBALANCER WILL GET CREATED
+# IF YOU DELETE THIS AUTOMATICALLY LOAD BALANCER IN AWS WILL ALSO GET DELETED.
