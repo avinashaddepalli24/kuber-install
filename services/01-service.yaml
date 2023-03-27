@@ -1,0 +1,52 @@
+
+### 2 pods with nginx and almalinux and 1 Service creation (cluster IP SERVICE)
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+   server: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+      - containerPort: 80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    name: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+  labels:
+   purpose: debug
+spec:
+  containers:
+    - name: almalinux
+      image: almalinux
+      command: ["sleep","100000"]
+
+
+# #### after creation of 2 pods and 1 service 
+#     login to the debug pod using command :  kubectl exec -it debug -- bash
+#     curl http://nginx-service
+#     then you will get the response....
+#     also try with the other pod and check whether service is responding or not response....
+#     like this you can attach any number of pods. and the service can also be used as a load balancer.
+#     CLUSTER IP IS ONLY FOR POD TO POD...WE CANT ACCESS FROM OUTSIDE.
+#     TO ACCESS FROM OUTSIDE WE HAVE NODE PORT   
